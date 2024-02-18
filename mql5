@@ -1,0 +1,50 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                                   Wolf Countdown |
+//|                                   Developed by Forex Robot Easy Team |
+//|                                                                   |
+//|                     Website: forexroboteasy.com                     |
+//+------------------------------------------------------------------+
+#property copyright 'Forex Robot Easy Team'
+#property link      'forexroboteasy.com'
+
+//+------------------------------------------------------------------+
+//| Indicator initialization function                                  |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Indicator deinitialization function                                |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+    // Perform any necessary cleanup tasks
+}
+
+//+------------------------------------------------------------------+
+//| Custom indicator iteration function                               |
+//+------------------------------------------------------------------+
+int OnCalculate(const int rates_total,
+                const int prev_calculated,
+                const datetime& time[],
+                const double& open[],
+                const double& high[],
+                const double& low[],
+                const double& close[],
+                const long& tick_volume[],
+                const long& volume[],
+                const int& spread[])
+{
+    // Calculate countdown to the closure of a trading candle
+    datetime current_time = TimeCurrent();
+    datetime next_candle_time = TimeNext();
+    
+    int remaining_time = next_candle_time - current_time;
+    
+    Print('Countdown: ', remaining_time);
+    
+    return(rates_total);
+}
